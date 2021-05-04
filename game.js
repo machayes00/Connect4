@@ -161,7 +161,7 @@ document.addEventListener("click", e => {
 })
 
 document.addEventListener("click", e => {
-    if((model.winner == 1 || drawCheck()) && e.x >= 675 && e.x <= 675+140 && e.y >= 310 && e.y <= 360) {
+    if((model.winner == 1 || drawCheck()) && e.x >= 175 && e.x <= 175+140 && e.y >= 310 && e.y <= 360) {
         for (let i = 0; i < boardHeight; i++) {
             for (let j = 0; j < boardWidth; j++) {
                 model.board[i][j] = ' ';
