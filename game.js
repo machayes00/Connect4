@@ -62,12 +62,12 @@ function splat() {
 function splatVictoryScreen() {
     context.font = "60pt Arial";
     context.fillStyle = "black";
-    context.fillText("GAME OVER", 600, 250);
+    context.fillText("GAME OVER", 100, 250);
     context.fillStyle = "green";
-    context.fillRect(675, 310, 140, 50);
+    context.fillRect(175, 310, 140, 50);
     context.font = "30pt Arial";
     context.fillStyle = "white";
-    context.fillText("RESET", 677, 350);
+    context.fillText("RESET", 177, 350);
 }
 
 function roundXs(x) {
