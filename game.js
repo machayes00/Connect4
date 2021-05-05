@@ -19,10 +19,6 @@ function initBoard() {
     }
 }
 
-document.addEventListener("click", e => {
-    console.log(e.x, e.y);
-})
-
 function tick() {
     window.requestAnimationFrame(splat);
 }
@@ -60,6 +56,13 @@ function splat() {
 }
 
 function splatVictoryScreen() {
+    if(model.next == '⚪️') {
+        context.fillStyle = "black";
+        context.fillText("Black Wins!", 115, 250);
+    } else {
+        context.fillStyle = "white";
+        context.fillText("White Wins!", 115, 250);
+    }
     context.fillStyle = "black";
     context.fillRect(175, 310, 140, 50);
     context.font = "30pt Arial";
@@ -80,6 +83,8 @@ function lowestEmpty(j) {
     for(let i = 0; i < boardHeight; i++) {
         if(model.board[i][j] == '⚪️' || model.board[i][j] == '⚫️') {
             lowest++;
+        } else if (i == 5){
+            return 5;
         } else {
             break;
         }
@@ -141,16 +146,17 @@ document.addEventListener("click", e => {
     i = roundYs(e.y);
     if(i < 0 || i > 5) {return;}
     if(j < 0 || j > 6) {return;}
-    if(model.board[lowestEmpty(j)][j] == '⚪️' || model.board[lowestEmpty(j)][j] == '⚫️') {return;}
+    let realY = lowestEmpty(j); //must store this value since dropping a piece affects it in the next line
+    if(model.board[realY][j] == '⚪️' || model.board[realY][j] == '⚫️') {return;}
     if(model.next == '⚪️') {
-        model.board[lowestEmpty(j)][j] = '⚪️';
-        if(victoryCheck(lowestEmpty(j)-1, j)) {
+        model.board[realY][j] = '⚪️';
+        if(victoryCheck(realY, j)) {
             model.winner = 1;
         }
         model.next = '⚫️';
     } else {
-        model.board[lowestEmpty(j)][j] = '⚫️';
-        if(victoryCheck(lowestEmpty(j)-1, j)) {
+        model.board[realY][j] = '⚫️';
+        if(victoryCheck(realY, j)) {
             model.winner = 1;
         }
         model.next = '⚪️';
