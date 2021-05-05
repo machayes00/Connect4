@@ -60,10 +60,7 @@ function splat() {
 }
 
 function splatVictoryScreen() {
-    context.font = "60pt Arial";
     context.fillStyle = "black";
-    context.fillText("GAME OVER", 100, 250);
-    context.fillStyle = "green";
     context.fillRect(175, 310, 140, 50);
     context.font = "30pt Arial";
     context.fillStyle = "white";
